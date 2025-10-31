@@ -70,7 +70,7 @@ function Sell() {
     const res = await axios.post("https://hindanbazar.onrender.com/upload", formImg, {
       headers: { "Content-Type": "multipart/form-data" },
     });
-    window.location.href = "http://localhost:5173/products";
+    window.location.href = "https://hindanbazarlive.onrender.com/products";
   };
 
   return (
