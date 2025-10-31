@@ -6,7 +6,7 @@ function Sell() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/userDetails");
+        const response = await fetch("https://hindanbazar.onrender.com/userDetails");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -67,7 +67,7 @@ function Sell() {
     for (let key in formData) {
       formImg.append(key, formData[key]);
     }
-    const res = await axios.post("http://localhost:5000/upload", formImg, {
+    const res = await axios.post("https://hindanbazar.onrender.com/upload", formImg, {
       headers: { "Content-Type": "multipart/form-data" },
     });
     window.location.href = "http://localhost:5173/products";
