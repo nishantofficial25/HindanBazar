@@ -24,7 +24,7 @@ function Show() {
     else{
       const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/products/${id}`);
+        const response = await fetch(`https://hindanbazar.onrender.com/products/${id}`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -53,7 +53,7 @@ function Show() {
     setTimeout(() => {
       mainImage.setAttribute(
         "src",
-        `http://localhost:5000/uploads/${images[index].path}`
+        `https://hindanbazar.onrender.com/uploads/${images[index].path}`
       );
       mainImage.style.opacity = "1";
     }, 200);
@@ -80,7 +80,7 @@ function Show() {
           <div className="image-gallery">
             <div className="main-image" id="mainImage">
               <img
-                src={`http://localhost:5000/uploads/${images[0].path}`}
+                src={`https://hindanbazar.onrender.com/uploads/${images[0].path}`}
                 alt=""
                 id="mainImageSvg"
               />
@@ -96,7 +96,7 @@ function Show() {
                     id={`${index}`}
                   >
                     <img
-                      src={`http://localhost:5000/uploads/${item.path}`}
+                      src={`https://hindanbazar.onrender.com/uploads/${item.path}`}
                       alt="Someimage"
                     />
                   </div>
