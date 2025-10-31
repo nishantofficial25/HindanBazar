@@ -21,9 +21,11 @@ export default function Profile() {
         }
         const fetchedData = await response.json();
         const newData = fetchedData.details.filter(
-          (datas) => datas.email == JSON.parse(localStorage.getItem("user")).userDetails.email
+          (datas) =>
+            datas.email ==
+            JSON.parse(localStorage.getItem("user")).userDetails.email
         );
-        updateFields(newData);
+        updateFields(newData[0]);
       } catch (error) {
         console.log(error);
       }
