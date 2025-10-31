@@ -110,7 +110,7 @@ export default function UserDetailsForm() {
   }
 
   const UploadData = async () => {
-    const res = await axios.post("http://localhost:5000/signUp",formData)
+    const res = await axios.post("https://hindanbazar.onrender.com/signUp",formData)
   };
 
   return (
