@@ -10,7 +10,8 @@ require("dotenv").config();
 const cors = require("cors");
 
 app.use(cors({
-  origin:"https://hindanbazarlive.onrender.com/"
+  origin:"https://hindanbazarlive.onrender.com",
+  methods:["GET","POST"]
 }));
 app.use(express.json());
 
@@ -35,7 +36,6 @@ app.post("/signUp", async (req, res) => {
     location: location,
   });
   await newUser.save();
-  /* res.redirect("http://localhost:5173/"); */
 });
 
 app.get("/userDetails", async (req, res) => {
