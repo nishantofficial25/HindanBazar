@@ -20,7 +20,10 @@ export default function Profile() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const fetchedData = await response.json();
-        updateFields(fetchedData.details[0]);
+        const newData = fetchedData.details.filter(
+          (datas) => datas.email == JSON.parse(localStorage.getItem("user")).email
+        );
+        updateFields(newData);
       } catch (error) {
         console.log(error);
       }
