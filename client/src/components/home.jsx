@@ -62,10 +62,10 @@ function Home() {
                   Local ka apna <i>OLX</i>{" "}
                 </p>
                 <div style={{ display: "flex", gap: "1rem" }}>
-                  <a href="http://localhost:5173/products">
+                  <a href="https://hindanbazarlive.onrender.com/products">
                     Buy Here &#128722;›
                   </a>
-                  <a href="http://localhost:5173/sell">Sell Here &#129689;›</a>
+                  <a href="https://hindanbazarlive.onrender.com/sell">Sell Here &#129689;›</a>
                 </div>
               </div>
             </div>
