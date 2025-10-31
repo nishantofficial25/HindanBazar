@@ -51,7 +51,7 @@ export default function Profile() {
     if (localStorage.getItem("user")) {
       localStorage.clear();
       window.location.reload();
-      window.location.href = "http://localhost:5173/";
+      window.location.href = "https://hindanbazarlive.onrender.com";
     }
   };
 
