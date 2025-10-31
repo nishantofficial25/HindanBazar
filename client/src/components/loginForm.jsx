@@ -12,7 +12,7 @@ export default function LoginForm() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:5000/userDetails");
+      const response = await fetch("https://hindanbazar.onrender.com/userDetails");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -53,7 +53,7 @@ export default function LoginForm() {
         "user",
         JSON.stringify({ userDetails: userInfo, status: false })
       );
-      const response = await fetch("http://localhost:5000/userDetails");
+      const response = await fetch("https://hindanbazar.onrender.com/userDetails");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
