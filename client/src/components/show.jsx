@@ -19,7 +19,7 @@ function Show() {
     ];
 
     if (arr.includes(id)) {
-      window.location.href = "http://localhost:5173/products";
+      window.location.href = "https://hindanbazarlive.onrender.com/products";
     }
     else{
       const fetchData = async () => {
