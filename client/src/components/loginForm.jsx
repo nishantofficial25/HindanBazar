@@ -128,7 +128,7 @@ export default function LoginForm() {
       ) : userDet.length == 0 ? (
         <UserDetailsForm></UserDetailsForm>
       ) : (
-        (window.location.href = "http://localhost:5173/")
+        (window.location.href = "https://hindanbazarlive.onrender.com/")
       )}
     </>
   );
