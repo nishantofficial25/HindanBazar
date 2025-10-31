@@ -52,7 +52,7 @@ app.get("/userDetails", async (req, res) => {
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Connect to MongoDB
-mongoose.connect("mongodb+srv://nishantofficial114_db_user:ZhJ6PtLnWWRMIDfN@cluster0.imvyi9q.mongodb.net//hindanZon", {
+mongoose.connect("mongodb+srv://nishantofficial114_db_user:ZhJ6PtLnWWRMIDfN@cluster0.imvyi9q.mongodb.net/hindanZon", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
