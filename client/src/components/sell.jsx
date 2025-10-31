@@ -11,7 +11,12 @@ function Sell() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const fetchedData = await response.json();
-        updateFields(fetchedData.details[0]);
+        const newData = fetchedData.details.filter(
+          (datas) =>
+            datas.email ==
+            JSON.parse(localStorage.getItem("user")).userDetails.email
+        );
+        updateFields(newData[0]);
       } catch (error) {
         console.log(error);
       }
