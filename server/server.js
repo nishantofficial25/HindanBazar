@@ -9,7 +9,9 @@ require("dotenv").config();
 
 const cors = require("cors");
 
-app.use(cors());
+app.use(cors({
+  origin:"https://hindanbazarlive.onrender.com/"
+}));
 app.use(express.json());
 
 // User Schema
