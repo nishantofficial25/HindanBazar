@@ -15,7 +15,7 @@ export default function Profile() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/userDetails");
+        const response = await fetch("https://hindanbazar.onrender.com/userDetails");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
