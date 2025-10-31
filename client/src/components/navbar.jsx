@@ -20,9 +20,9 @@ function Navbar(props) {
                     href={
                       user
                         ? user.status
-                          ? "http://localhost:5173/account"
-                          : "http://localhost:5173/login"
-                        : "http://localhost:5173/login"
+                          ? "https://hindanbazarlive.onrender.com/account"
+                          : "https://hindanbazarlive.onrender.com/login"
+                        : "https://hindanbazarlive.onrender.com/login"
                     }
                     style={{
                       textDecoration: "none",
@@ -62,9 +62,9 @@ function Navbar(props) {
                       href={
                         user
                           ? user.status
-                            ? "http://localhost:5173/account"
-                            : "http://localhost:5173/login"
-                          : "http://localhost:5173/login"
+                            ? "https://hindanbazarlive.onrender.com/account"
+                            : "https://hindanbazarlive.onrender.com/login"
+                          : "https://hindanbazarlive.onrender.com/login"
                       }
                       style={{
                         textDecoration: "none",
