@@ -65,7 +65,7 @@ const AccountDashboard = () => {
   ];
 
   const open = (loc)=>{
-    window.location.href = `http://localhost:5173/${loc}`;
+    window.location.href = `https://hindanbazarlive.onrender.com/${loc}`;
   }
   return (
     <>
