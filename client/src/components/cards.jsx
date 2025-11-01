@@ -31,11 +31,12 @@ function Cards(props) {
         );
    
       } else if (props.myprod) {
+       
         filtered_data = fetchedData.details.filter(
           (datas) =>
-            datas.emails ==
-            JSON.parse(localStorage.getItem("user")).userDetails.email
+            datas.emails == JSON.parse(localStorage.getItem("user")).userDetails.email
         );
+       console.log(filtered_data);
       } else {
         filtered_data = fetchedData.details.filter((datas) =>
           datas.title.toLowerCase().includes(props.search)
