@@ -76,18 +76,16 @@ function Cards(props) {
       setLoading(false);
     }
   }, [props.search]);
-
+if (loading) return <div className="app-container">
+            <SkeletonCard />
+          </div>;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
     <>
       {/* <!-- Main Content --> */}
       <div className="products-area">
-        {loading ? (
-          <div className="app-container">
-            <SkeletonCard />
-          </div>
-        ) : msg == "" ? (
+        {msg == "" ? (
           data.map((item, index) => {
             const firstImg = image.filter(
               (images) => images.productId == item._id
@@ -136,10 +134,9 @@ function Cards(props) {
                 </div>
               </a>
             );
-          })
-        ) : (
-          msg
-        )}
+              })
+            : msg
+        }
       </div>
     </>
   );
