@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import { Spinner, SkeletonCard } from "./loader";
+ import "../styles/product.css"; 
+import "../styles/loader.css";
 import "../styles/product.css";
 import { useParams } from "react-router-dom";
 
@@ -76,14 +79,19 @@ function Cards(props) {
     }
   }, [props.search]);
 
-  if (loading) return <p>Loading data...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
     <>
       {/* <!-- Main Content --> */}
       <div className="products-area">
-        {msg == ""
+        
+        {loading ? (
+          <div className="app-container">
+            <SkeletonCard />
+            <div className="container"></div>
+          </div>
+        ) : msg == ""
           ? data.map((item, index) => {
               const firstImg = image.filter(
                 (images) => images.productId == item._id
@@ -136,8 +144,10 @@ function Cards(props) {
                   </div>
                 </a>
               );
-            })
-          : msg}
+          })
+        ) : (
+          msg
+        )}
       </div>
     </>
   );
