@@ -9,9 +9,12 @@ import {
   MapIcon,
   LogOut,
 } from "lucide-react";
+import { Spinner, SkeletonCard } from "./loader";
+import "../styles/loader.css";
 import "../styles/userDetails.css";
 
 export default function Profile() {
+    const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -42,6 +45,7 @@ export default function Profile() {
         [item]: x[item],
       }));
     });
+    setLoading(false);
   };
 
   const [formData, setFormData] = useState({
@@ -60,6 +64,10 @@ export default function Profile() {
     }
   };
 
+  if (loading) return <div className="app-container">
+            <SkeletonCard />
+          </div>;
+  
   return (
     <>
       <div className="header">
