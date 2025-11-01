@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import "../styles/show.css";
+import { Spinner, SkeletonCard } from "./loader";
+import "../styles/loader.css";
 import { useParams } from "react-router-dom";
 
 function Show() {
@@ -59,7 +61,9 @@ function Show() {
     }, 200);
   };
 
-  if (loading) return <p>Loading data...</p>;
+  if (loading) return <div className="app-container">
+            <SkeletonCard />
+          </div>;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
