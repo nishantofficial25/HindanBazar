@@ -20,7 +20,7 @@ function Cards(props) {
 
  const fetchData = async () => {
     try {
-      const response = await fetch("https://hindanserver.vercel.app/products");
+      const response = await fetch("https://hindanbazar.onrender.com/products");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -102,7 +102,7 @@ function Cards(props) {
                       {/* <span className="best-seller">Best seller</span> */}
                       <div className="product-image">
                         <img
-                          src={`https://hindanserver.vercel.app/uploads/${firstImg.path}`}
+                          src={`https://hindanbazar.onrender.com/uploads/${firstImg.path}`}
                           alt=""
                           style={{
                             width: "100%",
