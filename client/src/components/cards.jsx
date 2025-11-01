@@ -34,11 +34,15 @@ function Cards(props) {
           (datas) =>
             datas.emails == JSON.parse(localStorage.getItem("user")).userDetails.email
         );
-      } else {
+      } else if (props.search !=""){
         filtered_data = fetchedData.details.filter((datas) =>
           datas.title.toLowerCase().includes(props.search)
         );
-      }
+      }else{
+        setMsg("");
+        setData(fetchedData);
+        setImage(fetchedData.images);
+     }
 
       if (filtered_data.length == 0) {
         setMsg("No product Found! Try something else.");
