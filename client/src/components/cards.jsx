@@ -18,14 +18,14 @@ function Cards(props) {
     fetchData();
   }, []);
 
- const fetchData = async () => {
+  const fetchData = async () => {
     try {
       const response = await fetch("https://hindanbazar.onrender.com/products");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const fetchedData = await response.json();
-      var filtered_data=[]
+      var filtered_data = [];
       if (id) {
         filtered_data = fetchedData.details.filter(
           (datas) => datas.Category.toLowerCase() == id
@@ -36,10 +36,9 @@ function Cards(props) {
             datas.emails ==
             JSON.parse(localStorage.getItem("user")).userDetails.email
         );
-        console.log(filtered_data)
       } else {
         filtered_data = fetchedData.details;
-      } 
+      }
 
       if (filtered_data.length == 0) {
         setMsg("No product Found! Try something else.");
@@ -47,7 +46,7 @@ function Cards(props) {
         setMsg("");
         setData(filtered_data);
         setImage(fetchedData.images);
-      }
+      } 
     } catch (error) {
       setError(error);
     } finally {
@@ -78,70 +77,68 @@ function Cards(props) {
     }
   }, [props.search]);
 
-  if (loading) return <div className="app-container">
-            <SkeletonCard />
-          </div>;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
     <>
       {/* <!-- Main Content --> */}
+
       <div className="products-area">
         {msg == ""
-            ? data.map((item, index) => {
-                const firstImg = image.filter(
-                  (images) => images.productId == item._id
-                )[0];
-                return (
-                  <a
-                    href={`/products/${item._id}`}
-                    style={{ backgroundColor: "white" }}
-                    key={index}
-                  >
-                    <div className="product-card">
-                      {/* <span className="best-seller">Best seller</span> */}
-                      <div className="product-image">
-                        <img
-                          src={`https://hindanbazar.onrender.com/uploads/${firstImg.path}`}
-                          alt=""
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "contain",
-                          }}
-                        />
-                      </div>
-                      <div className="product-details">
-                        {/* <div className="sponsored-tag">Sponsored</div> */}
-                        <h3 className="product-title">{item.title}</h3>
-                        {/* <div className="rating">
+          ? data.map((item, index) => {
+              const firstImg = image.filter(
+                (images) => images.productID == item._id
+              );
+              return (
+                <a
+                  href={`/products/${item._id}`}
+                  style={{ backgroundColor: "white" }}
+                  key={index}
+                >
+
+                  <div className="product-card">
+                    <div className="product-image">
+                      <img
+                        src={`data:${firstImg[0].type};base64,${firstImg[0].data}`}
+                        alt=""
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "contain",
+                        }}
+                      />
+                    </div>
+                    <div className="product-details">
+                      {/* <div className="sponsored-tag">Sponsored</div> */}
+                      <h3 className="product-title">{item.title}</h3>
+                      {/* <div className="rating">
                         <span className="stars">★★★★☆</span>
                         <span className="rating-count">6,971</span>
                       </div> */}
-                        {/* <div className="bought-info">
+                      {/* <div className="bought-info">
                         5K+ bought in past month
                       </div> */}
-                        {/* <div className="festival-tag">Great Indian Festival</div> */}
-                        <div className="price-section">
-                          <span className="currency">₹</span>
-                          <span className="price">{item.price}</span>
-                          {/* <span className="mrp">M.R.P: ₹59,900</span>
+                      {/* <div className="festival-tag">Great Indian Festival</div> */}
+                      <div className="price-section">
+                        <span className="currency">₹</span>
+                        <span className="price">{item.price}</span>
+                        {/* <span className="mrp">M.R.P: ₹59,900</span>
                         <span className="discount">(17% off)</span> */}
-                        </div>
-                        <div className="prime-delivery">
-                          <span className="delivery-info">2 Months Old</span>
-                        </div>
-                        {/*  <button className="add-to-cart">Add to Watchlist</button> */}
                       </div>
+                      <div className="prime-delivery">
+                        <span className="delivery-info">2 Months Old</span>
+                      </div>
+                      {/*  <button className="add-to-cart">Add to Watchlist</button> */}
                     </div>
-                  </a>
-                );
-              })
-            : msg
-        }
+                  </div>
+                </a>
+              );
+            })
+          : msg}
       </div>
     </>
   );
 }
 
 export default Cards;
+
