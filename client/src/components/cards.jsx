@@ -30,12 +30,15 @@ function Cards(props) {
         filtered_data = fetchedData.details.filter(
           (datas) => datas.Category.toLowerCase() == id
         );
-      } else{
+      } else if (props.myprod) {
         filtered_data = fetchedData.details.filter(
           (datas) =>
             datas.emails ==
             JSON.parse(localStorage.getItem("user")).userDetails.email
         );
+        console.log(filtered_data)
+      } else {
+        filtered_data = fetchedData.details;
       } 
 
       if (filtered_data.length == 0) {
