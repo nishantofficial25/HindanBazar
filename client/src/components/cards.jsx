@@ -79,7 +79,10 @@ function Cards(props) {
       setLoading(false);
     }
   }, [props.search]);
-if (loading) return <div className="app-container"><SkeletonCard /></div>;
+ 
+if (loading) return <div className="app-container">
+            <SkeletonCard />
+          </div>;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
