@@ -31,7 +31,7 @@ function Cards(props) {
       } else if (props.myprod) {
         filtered_data = fetchedData.details.filter(
           (datas) =>
-            datas.emails ==
+            datas.email ==
             JSON.parse(localStorage.getItem("user")).userDetails.email
         );
       } else {
