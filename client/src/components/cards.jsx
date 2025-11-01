@@ -83,11 +83,7 @@ function Cards(props) {
     <>
       {/* <!-- Main Content --> */}
       <div className="products-area">
-        <div className="app-container">
-          hi
-          <SkeletonCard />
-        </div>
-        {!loading ? (
+        {loading ? (
           <div className="app-container">
             <SkeletonCard />
           </div>
