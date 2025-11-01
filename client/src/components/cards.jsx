@@ -97,7 +97,7 @@ if (loading) return <div className="app-container"><SkeletonCard /></div>;
                     {/* <span className="best-seller">Best seller</span> */}
                     <div className="product-image">
                       <img
-                        src={`http://localhost:5000/uploads/${firstImg.path}`}
+                        src={`https://hindanbazar.onrender.com/uploads/${firstImg.path}`}
                         alt=""
                         style={{
                           width: "100%",
