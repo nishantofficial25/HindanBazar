@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Spinner, SkeletonCard } from "./loader";
+import { Spinner, SkeletonCard } from "./loader.jsx";
  import "../styles/product.css"; 
 import "../styles/loader.css";
 import "../styles/product.css";
@@ -104,7 +104,7 @@ function Cards(props) {
                   {/* <span className="best-seller">Best seller</span> */}
                   <div className="product-image">
                     <img
-                      src={`http://localhost:5173/uploads/${firstImg.path}`}
+                      src={`https://hindanbazar.onrender.com/uploads/${firstImg.path}`}
                       alt=""
                       style={{
                         width: "100%",
