@@ -18,14 +18,14 @@ function Cards(props) {
     fetchData();
   }, []);
 
-  const fetchData = async () => {
+ const fetchData = async () => {
     try {
-      const response = await fetch("https://hindanbazar.onrender.com/products");
+      const response = await fetch("http://localhost:5000/products");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const fetchedData = await response.json();
-      var filtered_data
+      var filtered_data=[]
       console.log(props.myprod);
       
       if (id) {
@@ -40,9 +40,7 @@ function Cards(props) {
         );
         console.log(filtered_data)
       } else {
-        filtered_data = fetchedData.details.filter((datas) =>
-          datas.title.toLowerCase().includes(props.search)
-        );
+        filtered_data = fetchedData.details;
       }
 
       if (filtered_data.length == 0) {
@@ -59,7 +57,7 @@ function Cards(props) {
     }
   };
 
-  /* useEffect(() => {
+  useEffect(() => {
     setLoading(true);
     setMsg("");
     try {
@@ -80,7 +78,7 @@ function Cards(props) {
     } finally {
       setLoading(false);
     }
-  }, [props.search]); */
+  }, [props.search]);
 
   if (error) return <p>Error: {error.message}</p>;
 
@@ -88,12 +86,7 @@ function Cards(props) {
     <>
       {/* <!-- Main Content --> */}
       <div className="products-area">
-        {
-          /* loading ? (
-          <div className="app-container">
-            <SkeletonCard />
-          </div>
-        ) :  */ msg == ""
+        {msg == ""
             ? data.map((item, index) => {
                 const firstImg = image.filter(
                   (images) => images.productId == item._id
