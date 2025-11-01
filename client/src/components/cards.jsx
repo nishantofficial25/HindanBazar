@@ -104,6 +104,7 @@ function Cards(props) {
                       {/* <span className="best-seller">Best seller</span> */}
                       <div className="product-image">
                         <img
+                          referrerPolicy="no-referrer"
                           src={`https://hindanbazar.onrender.com/uploads/${firstImg.path}`}
                           alt=""
                           style={{
