@@ -39,9 +39,7 @@ function Cards(props) {
           datas.title.toLowerCase().includes(props.search)
         );
       }else{
-        setMsg("");
-        setData(fetchedData);
-        setImage(fetchedData.images);
+        filtered_data = fetchedData;
      }
 
       if (filtered_data.length == 0) {
