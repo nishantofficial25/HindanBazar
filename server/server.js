@@ -55,10 +55,6 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 mongoose.connect(`${process.env.MONGOURI}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 5000, // Keep trying to connect for 5 seconds
-      socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
-      keepAlive: true, // Enable TCP keepAlive
-      keepAliveInitialDelay: 300000 // Initial delay for keepAlive probes (5 minutes)
 });
 
 const DataSchema = new mongoose.Schema({
@@ -78,8 +74,8 @@ const DataSchema = new mongoose.Schema({
 const Data = mongoose.model("Listing", DataSchema);
 
 const ImageSchema = new mongoose.Schema({
-  name: String,
-  path: String,
+  data: Buffer,
+  type: String,
   productId: String,
 });
 const Images = mongoose.model("Image", ImageSchema);
@@ -89,9 +85,17 @@ app.get("/products", async (req, res) => {
   try {
     const allData = await Data.find();
     const allImg = await Images.find();
+    
+    const convertedImg = allImg.map((img)=>{
+      return {
+        type: img.type,
+        data: img.data.toString("base64"),
+        productID: img.productId
+      };
+    })
     res.json({
       details: allData,
-      images: allImg,
+      images: convertedImg
     });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -99,16 +103,8 @@ app.get("/products", async (req, res) => {
 });
 
 // Multer setup for file uploads (in memory)
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/");
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
-const upload = multer({ storage });
-
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 app.post("/upload", upload.array("image", 10), async (req, res) => {
   const newData = new Data({
     title: req.body.title,
@@ -120,24 +116,28 @@ app.post("/upload", upload.array("image", 10), async (req, res) => {
       mob: req.body.mob,
       location: req.body.location,
     },
-    emails:req.body.email
+    emails: req.body.email,
   });
   const data = await newData.save();
   const productID = data._id.toString();
 
   const ImgData = req.files;
 
-  if (!ImgData) return res.status(400).json({ message: "No file Uploaded!" });
+  
+  try {
+    for (let index = 0; index < ImgData.length; index++) {
+      const newImage = new Images({
+        data: ImgData[index].buffer,
+        type: ImgData[index].mimetype,
+        productId: productID,
+      });
+      await newImage.save();
+    }
 
-  for (let index = 0; index < ImgData.length; index++) {
-    const newImage = new Images({
-      name: ImgData[index].originalname,
-      path: ImgData[index].filename,
-      productId: productID,
-    });
-    await newImage.save();
+    res.status(201).send("Image uploaded sucessfully");
+  } catch (err) {
+    res.status(500).send(err.message);
   }
-  /* res.redirect("http://localhost:5173/"); */
 });
 
 //Show Route
