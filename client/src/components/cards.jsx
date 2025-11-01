@@ -86,7 +86,7 @@ function Cards(props) {
         {loading ? (
           <div className="app-container">
             <SkeletonCard />
-            <div className="container"></div>
+            <div className="container">hiii</div>
           </div>
         ) : msg == "" ? (
           data.map((item, index) => {
