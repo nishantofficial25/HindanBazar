@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Spinner, SkeletonCard } from "./loader.jsx";
- import "../styles/product.css"; 
 import "../styles/loader.css";
 import "../styles/product.css";
 import { useParams } from "react-router-dom";
