@@ -23,11 +23,13 @@ function Cards(props) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const fetchedData = await response.json();
-      var filtered_data = [];
+     console.log(props.myprod);
+      var filtered_data;
       if (id) {
         filtered_data = fetchedData.details.filter(
           (datas) => datas.Category.toLowerCase() == id
         );
+   
       } else if (props.myprod) {
         filtered_data = fetchedData.details.filter(
           (datas) =>
