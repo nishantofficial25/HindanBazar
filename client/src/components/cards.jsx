@@ -23,7 +23,6 @@ function Cards(props) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const fetchedData = await response.json();
-     console.log(props.myprod);
       var filtered_data;
       if (id) {
         filtered_data = fetchedData.details.filter(
@@ -31,12 +30,10 @@ function Cards(props) {
         );
    
       } else if (props.myprod) {
-       
         filtered_data = fetchedData.details.filter(
           (datas) =>
             datas.emails == JSON.parse(localStorage.getItem("user")).userDetails.email
         );
-       console.log(filtered_data);
       } else {
         filtered_data = fetchedData.details.filter((datas) =>
           datas.title.toLowerCase().includes(props.search)
@@ -57,28 +54,6 @@ function Cards(props) {
     }
   };
 
-  useEffect(() => {
-    setLoading(true);
-    setMsg("");
-    try {
-      if (props.search == "") {
-        fetchData();
-      } else {
-        const filtered_data = data.filter((datas) =>
-          datas.title.toLowerCase().includes(props.search)
-        );
-        if (filtered_data.length == 0) {
-          setMsg("No product Found! Try something else.");
-        } else {
-          setData(filtered_data);
-        }
-      }
-    } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
-  }, [props.search]);
  
 if (loading) return <div className="app-container">
             <SkeletonCard />
