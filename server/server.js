@@ -10,7 +10,7 @@ require("dotenv").config();
 const cors = require("cors");
 
 app.use(cors({
-  origin:"https://hindan-bazar.vercel.app",
+  origin:"https://hindanbazarlive.onrender.com",
   methods:["GET","POST"]
 }));
 app.use(express.json());
@@ -55,6 +55,10 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 mongoose.connect(`${process.env.MONGOURI}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000, // Keep trying to connect for 5 seconds
+      socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
+      keepAlive: true, // Enable TCP keepAlive
+      keepAliveInitialDelay: 300000 // Initial delay for keepAlive probes (5 minutes)
 });
 
 const DataSchema = new mongoose.Schema({
