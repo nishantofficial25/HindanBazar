@@ -26,7 +26,7 @@ function Show() {
     else{
       const fetchData = async () => {
       try {
-        const response = await fetch(`https://hindanbazar.onrender.com/products/${id}`);
+        const response = await fetch(`https://hindanserver.vercel.app/products/${id}`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -55,7 +55,7 @@ function Show() {
     setTimeout(() => {
       mainImage.setAttribute(
         "src",
-        `https://hindanbazar.onrender.com/uploads/${images[index].path}`
+        `https://hindanserver.vercel.app/uploads/${images[index].path}`
       );
       mainImage.style.opacity = "1";
     }, 200);
@@ -84,7 +84,7 @@ function Show() {
           <div className="image-gallery">
             <div className="main-image" id="mainImage">
               <img
-                src={`https://hindanbazar.onrender.com/uploads/${images[0].path}`}
+                src={`https://hindanserver.vercel.app/uploads/${images[0].path}`}
                 alt=""
                 id="mainImageSvg"
               />
@@ -100,7 +100,7 @@ function Show() {
                     id={`${index}`}
                   >
                     <img
-                      src={`https://hindanbazar.onrender.com/uploads/${item.path}`}
+                      src={`https://hindanserver.vercel.app/uploads/${item.path}`}
                       alt="Someimage"
                     />
                   </div>
