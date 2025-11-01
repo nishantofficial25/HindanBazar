@@ -52,7 +52,7 @@ app.get("/userDetails", async (req, res) => {
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGOURI, {
+mongoose.connect(`${process.env.MONGOURI}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
