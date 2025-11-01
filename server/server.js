@@ -10,7 +10,7 @@ require("dotenv").config();
 const cors = require("cors");
 
 app.use(cors({
-  origin:"https://hindanbazarlive.onrender.com",
+  origin:"https://hindan-bazar.vercel.app",
   methods:["GET","POST"]
 }));
 app.use(express.json());
