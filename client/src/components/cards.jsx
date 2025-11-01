@@ -26,22 +26,17 @@ function Cards(props) {
       }
       const fetchedData = await response.json();
       var filtered_data=[]
-      console.log(props.myprod);
-      
       if (id) {
         filtered_data = fetchedData.details.filter(
           (datas) => datas.Category.toLowerCase() == id
         );
-      } else if (props.myprod) {
+      } else{
         filtered_data = fetchedData.details.filter(
           (datas) =>
             datas.emails ==
             JSON.parse(localStorage.getItem("user")).userDetails.email
         );
-        console.log(filtered_data)
-      } else {
-        filtered_data = fetchedData.details;
-      }
+      } 
 
       if (filtered_data.length == 0) {
         setMsg("No product Found! Try something else.");
@@ -104,7 +99,6 @@ function Cards(props) {
                       {/* <span className="best-seller">Best seller</span> */}
                       <div className="product-image">
                         <img
-                          referrerPolicy="no-referrer"
                           src={`https://hindanserver.vercel.app/uploads/${firstImg.path}`}
                           alt=""
                           style={{
