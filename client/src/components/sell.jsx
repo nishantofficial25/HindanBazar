@@ -1,8 +1,10 @@
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/sell.css";
 
 function Sell() {
+  const [imgs, setimg] = useState(null)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -34,7 +36,7 @@ function Sell() {
       }));
     });
   };
-  
+
   const [formData, setFormData] = useState({
     title: "",
     desc: "",
@@ -62,7 +64,7 @@ function Sell() {
     }
   };
 
-  const UploadData = async (event) => {
+const UploadData = async (event) => {
     event.preventDefault(); // Prevent default form submission
     const formImg = new FormData();
     img.forEach((item) => {
@@ -75,8 +77,8 @@ function Sell() {
     const res = await axios.post("https://hindanbazar.onrender.com/upload", formImg, {
       headers: { "Content-Type": "multipart/form-data" },
     });
-    window.location.href = "https://hindanbazarlive.onrender.com/products";
-  };
+    window.location.href = "http://localhost:5173/myProducts";
+  }; 
 
   return (
     <>
