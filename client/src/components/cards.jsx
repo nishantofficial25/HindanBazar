@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { Spinner, SkeletonCard } from "./loader.jsx";
+import { Spinner, SkeletonCard } from "./loader";
+ import "../styles/product.css"; 
 import "../styles/loader.css";
-import "../styles/product.css";
 import { useParams } from "react-router-dom";
 
 function Cards(props) {
@@ -28,8 +28,7 @@ function Cards(props) {
         filtered_data = fetchedData.details.filter(
           (datas) => datas.Category.toLowerCase() == id
         );
-      } 
-      else if (props.myprod) {
+      } else if (props.myprod) {
         filtered_data = fetchedData.details.filter(
           (datas) =>
             datas.emails ==
@@ -82,11 +81,15 @@ function Cards(props) {
 
   return (
     <>
+      {/* <!-- Main Content --> */}
       <div className="products-area">
-        {loading ? (
+        <div className="app-container">
+          hi
+          <SkeletonCard />
+        </div>
+        {!loading ? (
           <div className="app-container">
             <SkeletonCard />
-            <div className="container">hiii</div>
           </div>
         ) : msg == "" ? (
           data.map((item, index) => {
